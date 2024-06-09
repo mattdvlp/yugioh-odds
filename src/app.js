@@ -1,8 +1,10 @@
 
 import Card_deck from "./components/card_deck.js";
+import Check_module from './components/check_module.js';
 
 export default {
-    components: {Card_deck},
+
+    components: {Card_deck, Check_module},
     data() {
         return {
             probability_card: false,
@@ -40,17 +42,9 @@ export default {
       <hr>
       
       <div @click="checkProbability()">Check Probability</div>
-
-      <div v-if="probability_check">
-        Panel probability
-      </div>
-
-
-      <div>
-        History of probability
-
-        {{odds_history}}
-      </div>
+            <check_module :decks="decks"></check_module>
+      
+      
 `
 
 }
