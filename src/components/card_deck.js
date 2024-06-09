@@ -1,5 +1,5 @@
 
-import card_selector from '@/components/card_selector.js';
+import card_selector from './card_selector.js';
 
 export default {
     components: {card_selector},

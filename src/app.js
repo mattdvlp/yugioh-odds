@@ -1,5 +1,5 @@
 
-import Card_deck from "@/components/card_deck.js";
+import Card_deck from "./components/card_deck.js";
 
 export default {
     components: {Card_deck},
