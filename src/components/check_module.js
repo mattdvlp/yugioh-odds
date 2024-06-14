@@ -16,10 +16,13 @@ export default {
     template: `
     <div>What deck do you want to use?</div>
     <form @submit.prevent="chooseCards">
-    <input type="radio">
-    <option v-for="deck in decks" >
-      {{ deck.name }}
-    </option>
+      <fieldset>
+      <div v-for="deck in decks">
+          <input v-if="deck.length > 0" type="radio" v-bind:value="deck[0].id">
+        {{deck}}
+      
+      </div>
+      </fieldset>
       <input type="submit">
     </form>
     

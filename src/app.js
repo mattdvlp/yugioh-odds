@@ -9,7 +9,11 @@ export default {
         return {
             probability_card: false,
             probability_check: false,
-            decks: [],
+            decks: [
+                {
+                    id:'',
+                    deck: ''}
+            ],
             odds_history: null,
 
         }
@@ -21,30 +25,58 @@ export default {
         },
 
         addDeck(cards) {
-            this.decks.push(cards);
+            if(this.probability_card !== false) {
+                this.probability_card = false
+            }
+
+            let arr = [{}];
+
+            if (!localStorage.decks) {
+                localStorage.setItem('decks', [{}]);
+            } else {
+                arr = JSON.parse(localStorage.decks);
+            }
+            console.log(arr);
+            arr.push([{'id': this.decks.length +1,'cards':cards}]);
+
+            localStorage.decks = JSON.stringify(arr);
+
+            this.decks.push([{'id': this.decks.length +1,'cards':cards}]);
         },
 
         checkProbability() {
             this.probability_check = true
         }
     },
+    mounted() {
+        if (localStorage.decks) {
+            this.decks = JSON.parse(localStorage.decks)
+        }
+    },
 
     
     /* html */
     template : `
-      <div @click="addProbability()">Add a probability</div>
+      <div class="w-fit p-2 bg-orange-300 rounded hover:bg-orange-200" v-if="!probability_card"><a href="#" @click="addProbability()">Add a deck</a></div>
       <div v-if="probability_card">
-        <card_deck @addDeck="addDeck"></card_deck>
+        <card_deck @addDeck="addDeck" @addProbability ="addProbability"></card_deck>
       </div>
       
-      Decks: {{decks}}
-      
-      <hr>
+      {{decks}}
+      <div v-if="decks.length > 0" class="mt-10">
+        <h2 class="text-lg">Decks:</h2>
+        <div v-for="deck in decks">
+          <div v-if="deck.length > 0" class="border border-gray-200 rounded p-3">
+          <div v-for="card in deck[0].cards">
+          <img v-bind:src="card.image" class="w-1/5 md:1/8">
+          </div>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-5 mb-5">
       
       <div @click="checkProbability()">Check Probability</div>
             <check_module :decks="decks"></check_module>
-      
-      
 `
 
 }
