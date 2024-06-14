@@ -36,17 +36,18 @@ export default {
             } else {
                 arr = JSON.parse(localStorage.decks);
             }
-            console.log(arr);
-            arr.push([{'id': this.decks.length +1,'cards':cards}]);
+
+            arr.push([{'id': this.decks.length,'cards':cards}]);
 
             localStorage.decks = JSON.stringify(arr);
 
-            this.decks.push([{'id': this.decks.length +1,'cards':cards}]);
+            this.decks.push([{'id': this.decks.length,'cards':cards}]);
         },
 
         checkProbability() {
             this.probability_check = true
-        }
+        },
+
     },
     mounted() {
         if (localStorage.decks) {
@@ -57,26 +58,23 @@ export default {
     
     /* html */
     template : `
-      <div class="w-fit p-2 bg-orange-300 rounded hover:bg-orange-200" v-if="!probability_card"><a href="#" @click="addProbability()">Add a deck</a></div>
+      <div class="grid grid-flow-row-dense grid-cols-3">
+        <div class="col-span-2">
+        <div class="text-5xl text-orange-900" @click="checkProbability()">Check Probability</div>
+            <check_module :decks="decks" @calculator="calculator"></check_module>
+        </div>
+      
+      <div class="flex justify-end">
+      <a href="#" @click="addProbability()" class="w-fit h-fit p-2 bg-orange-300 rounded hover:bg-orange-200" v-if="!probability_card">
+        Add a deck
+      </a>
+      </div>
+     
+      </div>
+
       <div v-if="probability_card">
         <card_deck @addDeck="addDeck" @addProbability ="addProbability"></card_deck>
       </div>
-      
-      {{decks}}
-      <div v-if="decks.length > 0" class="mt-10">
-        <h2 class="text-lg">Decks:</h2>
-        <div v-for="deck in decks">
-          <div v-if="deck.length > 0" class="border border-gray-200 rounded p-3">
-          <div v-for="card in deck[0].cards">
-          <img v-bind:src="card.image" class="w-1/5 md:1/8">
-          </div>
-          </div>
-        </div>
-      </div>
-      <hr class="mt-5 mb-5">
-      
-      <div @click="checkProbability()">Check Probability</div>
-            <check_module :decks="decks"></check_module>
-`
+    `
 
 }
