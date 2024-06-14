@@ -1,10 +1,8 @@
 
 let request_call = '';
-import { PlusCircleIcon } from "@vue-hero-icons/outline";
+
 export default {
-components: {
-    PlusCircleIcon
-},
+
     data() {
       return {
           card: '',
