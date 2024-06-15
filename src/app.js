@@ -60,7 +60,7 @@ export default {
     template : `
       <div class="grid grid-flow-row-dense grid-cols-3">
         <div class="col-span-2">
-        <div class="text-5xl text-orange-900" @click="checkProbability()">Check Probability</div>
+        <div class="text-5xl" @click="checkProbability()">Check Probability</div>
             <check_module :decks="decks" @calculator="calculator"></check_module>
         </div>
       

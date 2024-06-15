@@ -16,6 +16,7 @@ export default {
     methods: {
       chooseDeck(id) {
           this.deckChoose = true;
+          this.cardsChoose = false;
           this.whichDeck = this.decks[id];
           this.whichDeck = this.whichDeck[0].cards
           this.cardsList = [];
@@ -58,7 +59,6 @@ export default {
           <input type="checkbox" @change="chooseCards($event,index)" v-bind:value="index"><label>{{card.name}}</label>
       </div>
     </div>
-    {{cardsList}}
     
     <probability v-if="cardsChoose" :cards-list="cardsList"></probability>
   
