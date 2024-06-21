@@ -42,7 +42,7 @@ export default {
     
       <div v-for="deck in decks">
         <div v-if="deck.length > 0" class="has-[:checked]:bg-indigo-50">
-          <input name="deck" type="radio" v-bind:value="deck[0].id" @click="chooseDeck(deck[0].id)">
+          <input name="deck" type="radio" class=" focus:ring checked:bg-red-500 checked:border-primary" v-bind:value="deck[0].id" @click="chooseDeck(deck[0].id)">
         <label class="flex" v-for="elements in deck">
           <span v-for="element in elements.cards">
            <img class="w-20" v-bind:src="element.image">
