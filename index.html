@@ -4,25 +4,20 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
       <script src="https://cdn.tailwindcss.com"></script>
-      <script src="https://unpkg.com/vue@3"></script>
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
     <title>Yu-Gi-Oh Odds</title>
   </head>
   <body class="font-sans bg-orange-50 p-5 h-full">
   <div class="w-full bg-cream flex justify-center">
-  <img src="public/yugioh-logo.svg" class="w-1/2 text-center md:w-1/3">
+  <img src="/yugioh-logo.svg" class="w-1/2 text-center md:w-1/3">
   </div>
 
     <div id="app" class="pt-10 p-5 md:p-10">
     </div>
-
-    <script type="module">
-        import app from './src/app.js'
-
-        Vue.createApp(app).mount('#app');
-    </script>
+  <script type="module" src="src/main.js"></script>
   </body>
 </html>
